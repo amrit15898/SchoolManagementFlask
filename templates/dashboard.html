@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Welcome {{name.name}}</h1>
+    {% if today_present%}
+         <h1>You have already punch in</h1>
+    {% else %}
+ <form method="POST">
+            <button name="punch_in" value="punch in" type="submit">Punch In</button>
+        </form>
+
+   {% endif %}
+   <a href="/logout">Logout</a>
+{% endblock content %}

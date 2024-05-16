@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Principal Panel</h1>
+<div>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+           <th>Email</th>
+            <th>Subject</th>
+            <th>Attendance</th>
+        </thead>
+        <tbody>
+        {% for teacher, subject in teachers %}
+
+            <tr>
+                <td>{{teacher.id}}</td>
+                <td>{{teacher.name}}</td>
+            <td>{{teacher.email}}</td>
+            <td>{{subject.name}}</td>
+                <td>
+                    {% if teacher_attendance[teacher.id] %}
+                        {% if teacher_attendance[teacher.id].is_present %}
+                            Present
+                        {% else %}
+                            Absent
+                        {% endif %}
+                    {% else %}
+                        No record
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{url_for('get_absent_teachers')}}">Get Absent Teachers Page</a>
+</div>
+{% endblock content%}
